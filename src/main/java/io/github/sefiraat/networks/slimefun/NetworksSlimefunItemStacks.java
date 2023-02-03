@@ -376,7 +376,7 @@ public class NetworksSlimefunItemStacks {
 
         NETWORK_QUANTUM_STORAGE_1 = Theme.themedSlimefunItemStack(
             "NTW_QUANTUM_STORAGE_1",
-            new ItemStack(Material.WHITE_TERRACOTTA),
+            new ItemStack(Material.SHULKER_BOX),
             Theme.MACHINE,
             "网络量子存储 (4K)",
             "可存储 " + NetworkQuantumStorage.getSizes()[0] + " 个物品",
@@ -386,7 +386,7 @@ public class NetworksSlimefunItemStacks {
 
         NETWORK_QUANTUM_STORAGE_2 = Theme.themedSlimefunItemStack(
             "NTW_QUANTUM_STORAGE_2",
-            new ItemStack(Material.LIGHT_GRAY_TERRACOTTA),
+            new ItemStack(Material.WHITE_SHULKER_BOX),
             Theme.MACHINE,
             "网络量子存储 (32K)",
             "可存储 " + NetworkQuantumStorage.getSizes()[1] + " 个物品",
@@ -396,7 +396,7 @@ public class NetworksSlimefunItemStacks {
 
         NETWORK_QUANTUM_STORAGE_3 = Theme.themedSlimefunItemStack(
             "NTW_QUANTUM_STORAGE_3",
-            new ItemStack(Material.GRAY_TERRACOTTA),
+            new ItemStack(Material.LIGHT_GRAY_SHULKER_BOX),
             Theme.MACHINE,
             "网络量子存储 (262K)",
             "可存储 " + NetworkQuantumStorage.getSizes()[2] + " 个物品",
@@ -406,7 +406,7 @@ public class NetworksSlimefunItemStacks {
 
         NETWORK_QUANTUM_STORAGE_4 = Theme.themedSlimefunItemStack(
             "NTW_QUANTUM_STORAGE_4",
-            new ItemStack(Material.BROWN_TERRACOTTA),
+            new ItemStack(Material.GRAY_SHULKER_BOX),
             Theme.MACHINE,
             "网络量子存储 (2M)",
             "可存储 " + NetworkQuantumStorage.getSizes()[3] + " 个物品",
@@ -416,7 +416,7 @@ public class NetworksSlimefunItemStacks {
 
         NETWORK_QUANTUM_STORAGE_5 = Theme.themedSlimefunItemStack(
             "NTW_QUANTUM_STORAGE_5",
-            new ItemStack(Material.BLACK_TERRACOTTA),
+            new ItemStack(Material.BROWN_SHULKER_BOX),
             Theme.MACHINE,
             "网络量子存储 (16M)",
             "可存储 " + NetworkQuantumStorage.getSizes()[4] + " 个物品",
@@ -426,7 +426,7 @@ public class NetworksSlimefunItemStacks {
 
         NETWORK_QUANTUM_STORAGE_6 = Theme.themedSlimefunItemStack(
             "NTW_QUANTUM_STORAGE_6",
-            new ItemStack(Material.PURPLE_TERRACOTTA),
+            new ItemStack(Material.CYAN_SHULKER_BOX),
             Theme.MACHINE,
             "网络量子存储 (134M)",
             "可存储 " + NetworkQuantumStorage.getSizes()[5] + " 个物品",
@@ -436,7 +436,7 @@ public class NetworksSlimefunItemStacks {
 
         NETWORK_QUANTUM_STORAGE_7 = Theme.themedSlimefunItemStack(
             "NTW_QUANTUM_STORAGE_7",
-            new ItemStack(Material.MAGENTA_TERRACOTTA),
+            new ItemStack(Material.LIGHT_BLUE_SHULKER_BOX),
             Theme.MACHINE,
             "网络量子存储 (1B)",
             "可存储 " + NetworkQuantumStorage.getSizes()[6] + " 个物品",
@@ -446,7 +446,7 @@ public class NetworksSlimefunItemStacks {
 
         NETWORK_QUANTUM_STORAGE_8 = Theme.themedSlimefunItemStack(
             "NTW_QUANTUM_STORAGE_8",
-            new ItemStack(Material.RED_TERRACOTTA),
+            new ItemStack(Material.RED_SHULKER_BOX),
             Theme.MACHINE,
             "网络量子存储 (∞)",
             "可存储几乎无限多个物品",
