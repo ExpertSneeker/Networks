@@ -91,6 +91,7 @@ public class NetworksSlimefunItemStacks {
     public static final SlimefunItemStack NETWORK_RAKE_1;
     public static final SlimefunItemStack NETWORK_RAKE_2;
     public static final SlimefunItemStack NETWORK_RAKE_3;
+    public static final SlimefunItemStack NETWORK_DEBUG_STICK;
 
     static {
 
@@ -753,6 +754,14 @@ public class NetworksSlimefunItemStacks {
             "可以立即破坏",
             "",
             LoreBuilder.usesLeft(9999)
+        );
+
+        NETWORK_DEBUG_STICK = Theme.themedSlimefunItemStack(
+            "NTW_DEBUG_STICK",
+            getPreEnchantedItemStack(Material.STICK, true, new Pair<>(Enchantment.LUCK, 1)),
+            Theme.TOOL,
+            "网络调试棒",
+            "右键点击一个网络方块开启调试。"
         );
     }
 

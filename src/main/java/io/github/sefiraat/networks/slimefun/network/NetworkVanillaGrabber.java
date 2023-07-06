@@ -1,6 +1,7 @@
 package io.github.sefiraat.networks.slimefun.network;
 
 import com.bgsoftware.wildchests.api.WildChestsAPI;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.sefiraat.networks.NetworkStorage;
 import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.NodeDefinition;
@@ -10,7 +11,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -80,7 +80,7 @@ public class NetworkVanillaGrabber extends NetworkDirectional {
         final Block block = blockMenu.getBlock();
         final Block targetBlock = block.getRelative(direction);
         // Fix for early vanilla pusher release
-        final String ownerUUID = BlockStorage.getLocationInfo(block.getLocation(), OWNER_KEY);
+        final String ownerUUID = StorageCacheUtils.getData(block.getLocation(), OWNER_KEY);
         if (ownerUUID == null) {
             return;
         }
@@ -102,12 +102,18 @@ public class NetworkVanillaGrabber extends NetworkDirectional {
             return;
         }
 
-        if (Networks.getSupportedPluginManager().isWildChests()
-            && WildChestsAPI.getChest(targetBlock.getLocation()) != null
-        ) {
+        boolean wildChests = Networks.getSupportedPluginManager().isWildChests();
+        boolean isChest = wildChests && WildChestsAPI.getChest(targetBlock.getLocation()) != null;
+
+        sendDebugMessage(block.getLocation(), "WildChests 已安装：" + wildChests);
+        sendDebugMessage(block.getLocation(), "该方块是否被 WildChest 判断为方块：" + isChest);
+
+        if (wildChests && isChest) {
+            sendDebugMessage(block.getLocation(), "WildChest 测试失败！");
             return;
         }
 
+        sendDebugMessage(block.getLocation(), "WildChest 测试通过。");
         final Inventory inventory = holder.getInventory();
 
         if (inventory instanceof FurnaceInventory furnaceInventory) {

@@ -1,6 +1,7 @@
 package io.github.sefiraat.networks.slimefun.network;
 
 import com.bgsoftware.wildchests.api.WildChestsAPI;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import io.github.sefiraat.networks.NetworkStorage;
 import io.github.sefiraat.networks.Networks;
 import io.github.sefiraat.networks.network.NodeDefinition;
@@ -11,7 +12,6 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.inventory.InvUtils;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -72,7 +72,7 @@ public class NetworkVanillaPusher extends NetworkDirectional {
         final Block block = blockMenu.getBlock();
         final Block targetBlock = blockMenu.getBlock().getRelative(direction);
         // Fix for early vanilla pusher release
-        final String ownerUUID = BlockStorage.getLocationInfo(block.getLocation(), OWNER_KEY);
+        final String ownerUUID = StorageCacheUtils.getData(block.getLocation(), OWNER_KEY);
         if (ownerUUID == null) {
             return;
         }
@@ -101,14 +101,21 @@ public class NetworkVanillaPusher extends NetworkDirectional {
             return;
         }
 
+        boolean wildChests = Networks.getSupportedPluginManager().isWildChests();
+        boolean isChest = wildChests && WildChestsAPI.getChest(targetBlock.getLocation()) != null;
+
+        sendDebugMessage(block.getLocation(), "WildChests 已安装：" + wildChests);
+        sendDebugMessage(block.getLocation(), "该方块是否被 WildChest 判断为方块：" + isChest);
+
         if (inventory instanceof FurnaceInventory furnace) {
             handleFurnace(stack, furnace);
         } else if (inventory instanceof BrewerInventory brewer) {
             handleBrewingStand(stack, brewer);
-        } else if (Networks.getSupportedPluginManager().isWildChests()
-                && WildChestsAPI.getChest(targetBlock.getLocation()) != null) {
+        } else if (wildChests && isChest) {
+            sendDebugMessage(block.getLocation(), "WildChest 测试失败！");
             return;
         } else if (InvUtils.fits(holder.getInventory(), stack)) {
+            sendDebugMessage(block.getLocation(), "WildChest 测试成功。");
             holder.getInventory().addItem(stack);
             stack.setAmount(0);
         }
