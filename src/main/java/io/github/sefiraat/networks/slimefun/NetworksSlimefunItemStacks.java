@@ -387,11 +387,7 @@ public class NetworksSlimefunItemStacks {
             "网络单元",
             "网络单元拥有54格空间(相当于一个大箱子)",
             "可以通过网络访问其中的物品",
-            "也可以直接打开",
-                " ",//拆除网络单元后将不会掉落库存，仅掉落容器
-                "为防止某些bug",
-                "放置后拆除将只会掉落容器",
-                "不会掉落库存，请谨慎拆除"
+            "也可以直接打开"
         );
 
         NETWORK_GREEDY_BLOCK = Theme.themedSlimefunItemStack(

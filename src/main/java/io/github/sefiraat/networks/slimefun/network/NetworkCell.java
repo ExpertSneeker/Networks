@@ -33,8 +33,7 @@ public class NetworkCell extends NetworkObject {
         super(itemGroup, item, recipeType, recipe, NodeType.CELL);
 
         for (int slot : SLOTS) {
-            //拆除网络单元后将不会掉落库存，仅掉落容器
-            //this.getSlotsToDrop().add(slot);
+            this.getSlotsToDrop().add(slot);
         }
     }
 
