@@ -18,6 +18,7 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.libraries.paperlib.PaperLib;
 import io.github.thebusybiscuit.slimefun4.libraries.paperlib.features.blockstatesnapshot.BlockStateSnapshotResult;
+import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -106,6 +107,10 @@ public class NetworkControlX extends NetworkDirectional {
             return;
         }
 
+        if (SlimefunTag.CARGO_SUPPORTED_STORAGE_BLOCKS.isTagged(material)) {
+            return;
+        }
+
         final SlimefunItem slimefunItem = StorageCacheUtils.getSfItem(targetBlock.getLocation());
 
         if (slimefunItem != null) {
@@ -124,17 +129,18 @@ public class NetworkControlX extends NetworkDirectional {
         final UUID uuid = UUID.fromString(StorageCacheUtils.getData(blockMenu.getLocation(), OWNER_KEY));
         final OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(uuid);
 
-        if (!Slimefun.getProtectionManager().hasPermission(offlinePlayer, targetBlock, Interaction.BREAK_BLOCK)) {
-            return;
-        }
+        Bukkit.getScheduler().runTask(Networks.getInstance(), bukkitTask -> {
+            if (!Slimefun.getProtectionManager().hasPermission(offlinePlayer, targetBlock, Interaction.BREAK_BLOCK)) {
+                return;
+            }
 
-        final ItemStack resultStack = new ItemStack(material, 1);
+            final ItemStack resultStack = new ItemStack(material, 1);
 
-        definition.getNode().getRoot().addItemStack(resultStack);
+            definition.getNode().getRoot().addItemStack(resultStack);
 
-        if (resultStack.getAmount() == 0) {
-            this.blockCache.add(targetPosition);
-            Bukkit.getScheduler().runTask(Networks.getInstance(), bukkitTask -> {
+            if (resultStack.getAmount() == 0) {
+                this.blockCache.add(targetPosition);
+
                 final BlockStateSnapshotResult blockState = PaperLib.getBlockState(targetBlock, true);
 
                 if (blockState.getState() instanceof InventoryHolder) {
@@ -149,8 +155,8 @@ public class NetworkControlX extends NetworkDirectional {
                     DUST_OPTIONS
                 );
                 definition.getNode().getRoot().removeRootPower(REQUIRED_POWER);
-            });
-        }
+            }
+        });
     }
 
     @Nonnull

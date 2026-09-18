@@ -56,7 +56,7 @@ public class NetworkQuantumStorage extends SlimefunItem implements DistinctiveIt
         Integer.MAX_VALUE
     };
 
-    private static final String WIKI_PAGE = "Quantum-Storage";
+    private static final String WIKI_PAGE = "network-storage/quantum-storage";
 
     public static final String BS_AMOUNT = "stored_amount";
     public static final String BS_VOID = "void_excess";
@@ -376,7 +376,8 @@ public class NetworkQuantumStorage extends SlimefunItem implements DistinctiveIt
     private static boolean isBlacklisted(@Nonnull ItemStack itemStack) {
         return itemStack.getType() == Material.AIR
             || itemStack.getType().getMaxDurability() < 0
-            || Tag.SHULKER_BOXES.isTagged(itemStack.getType());
+            || Tag.SHULKER_BOXES.isTagged(itemStack.getType())
+            || SlimefunItem.getByItem(itemStack) instanceof NetworkQuantumStorage;
     }
 
     @ParametersAreNonnullByDefault

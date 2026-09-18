@@ -6,16 +6,10 @@
 
 ## 下载
 
-点击这里下载 Networks: [下载 Networks](https://builds.guizhanss.net/ybw0014/Networks-CN/master)
+> [!IMPORTANT]
+> 本附属年久失修。[网络拓展](https://github.com/ytdd9527/NetworksExpansion)是基于本附属进行再开发以及 bug 修复的 fork 版本，建议更换。[点击前往下载网络扩展](https://builds.guizhanss.com/ytdd9527/NetworksExpansion)
 
-<p align="center">
-  <a href="https://github.com/ybw0014/Networks-CN/actions/workflows/maven.yml">
-    <img src="https://github.com/ybw0014/Networks-CN/actions/workflows/maven.yml/badge.svg" alt="Java CI"/>
-  </a>
-  <a href="https://builds.guizhanss.net/ybw0014/Networks-CN/master">
-    <img src="https://builds.guizhanss.net/f/ybw0014/Networks-CN/master/badge.svg" alt="Build status"/>
-  </a>
-</p>
+[![构建状态](https://builds.guizhanss.com/api/badge/SlimefunGuguProject/Networks/master/latest)](https://builds.guizhanss.com/SlimefunGuguProject/Networks/master)
 
 ## Wiki / 文档
 
